@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import "./styles.css";
+import "./App.css";
 
 // sentry
 import * as Sentry from "@sentry/react";
@@ -26,7 +26,7 @@ export default function App() {
                     {/* on click, this button sets an Object as a message, not a string. */}
                     {/* which will cause an error to occur in the component tree */}
                     <button
-                        onClick={() => setMessage({super_bug: "Hello World"})} // Tạo Bug: Cập nhật string thành object để tạo lỗi
+                        onClick={() => setMessage({haizz: "Hello World"})} // Tạo Bug: Cập nhật string thành object để tạo lỗi
                     >
                         Click here to change message!
                     </button>
