@@ -1118,7 +1118,7 @@ CI=true npm test
 ```
 
 ```bash
-CI=true npm run build
+CI=true npm run build-sourcemap
 ```
 
 The test command will force Jest to run tests once instead of launching the watcher.
@@ -1218,7 +1218,7 @@ For environments using [Node](https://nodejs.org/), the easiest way to handle th
 
 ```sh
 npm install -g serve
-serve -s build
+serve -s build-sourcemap
 ```
 
 The last command shown above will serve your static site on the port **5000**. Like many of [serve](https://github.com/zeit/serve)’s internal settings, the port can be adjusted using the `-p` or `--port` flags.
@@ -1240,10 +1240,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-app.use(express.static('./build'));
+app.use(express.static('./build-sourcemap'));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './build', 'index.html'));
+  res.sendFile(path.join(__dirname, './build-sourcemap', 'index.html'));
 });
 
 app.listen(9000);
@@ -1339,11 +1339,11 @@ Then run the `firebase init` command from your project’s root. You need to cho
 
     Your public directory is the folder (relative to your project directory) that
     will contain Hosting assets to uploaded with firebase deploy. If you
-    have a build process for your assets, use your build's output directory.
+    have a build-sourcemap process for your assets, use your build-sourcemap's output directory.
 
-    ? What do you want to use as your public directory? build
+    ? What do you want to use as your public directory? build-sourcemap
     ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
-    ✔  Wrote build/index.html
+    ✔  Wrote build-sourcemap/index.html
 
     i  Writing configuration info to firebase.json...
     i  Writing project information to .firebaserc...
@@ -1358,8 +1358,8 @@ Now, after you create a production build with `npm run build`, you can deploy it
 
     i  deploying database, hosting
     ✔  database: rules ready to deploy.
-    i  hosting: preparing build directory for upload...
-    Uploading: [==============================          ] 75%✔  hosting: build folder uploaded successfully
+    i  hosting: preparing build-sourcemap directory for upload...
+    Uploading: [==============================          ] 75%✔  hosting: build-sourcemap folder uploaded successfully
     ✔  hosting: 8 files uploaded successfully
     i  starting release process (may take several minutes)...
 
@@ -1404,8 +1404,8 @@ Add the following scripts in your `package.json`:
   // ...
   "scripts": {
     // ...
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build-sourcemap",
+    "deploy": "gh-pages -d build-sourcemap"
   }
 ```
 
@@ -1542,7 +1542,7 @@ Install the Surge CLI if you haven’t already by running `npm install -g surge`
 ```sh
               email: email@domain.com
            password: ********
-       project path: /path/to/project/build
+       project path: /path/to/project/build-sourcemap
                size: 7 files, 1.8 MB
              domain: create-react-app.surge.sh
              upload: [====================] 100%, eta: 0.0s
